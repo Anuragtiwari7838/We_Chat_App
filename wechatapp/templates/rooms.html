@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+<div class="col-12">
+  <div class="alert alert-primary d-flex justify-content-between" role="alert">
+    <h5>Available Rooms For {{ user.username }}!</h5>
+    <a href="/accounts/logout/">
+      <button type="button" class="btn btn-light">Click to Log Out</button>
+    </a>
+  </div>
+</div>
+
+
+
+
+
+  
+
+      
+
+
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-3">
+      {% for i in rooms %}
+        <div class="col mb-4">
+
+          <div class="card">
+            <div class="card-body">
+              <!-- <img src="https://logos.flamingtext.com/Word-Logos/room-design-fluffy-name.png" class="card-img-top" alt="..."> -->
+              <h5 class="card-title mx-auto">Welcome to <strong>{{i.name}}</strong></h5>
+              <a href="{{i.slug}}"" class="btn btn-primary  btn-block">Go to Room</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+
+  
+</div>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}
